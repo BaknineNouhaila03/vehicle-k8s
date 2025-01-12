@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pitstop-vehicle-database
+spec:
+  selector:
+    matchLabels:
+      app: pitstop-vehicle-database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pitstop-vehicle-database
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        envFrom:
+            - configMapRef:
+                name: pitstop-vehicle-database-configmap
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: vehicledb-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: vehicledb-persistent-storage
+        persistentVolumeClaim:
+          claimName: vehicle-db-pv-claim

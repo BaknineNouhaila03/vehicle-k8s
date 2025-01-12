@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pitstop-vehicle-depl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pitstop-vehicle
+  template:
+    metadata:
+      labels:
+        app: pitstop-vehicle
+    spec:
+      containers:
+        - name: pitstop-vehicle
+          image: nouhabk23/pitstop-vehicle
+          ports:
+            - containerPort: 3002
+          envFrom:
+            - configMapRef:
+                name: pitstop-vehicle-configmap
