@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pitstop
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://gitlab.com/aseds6001802/Vehicle-KubernetesFiles.git'    
+    path: k8s
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    
+    automated:
+      prune: true
+      selfHeal: true
