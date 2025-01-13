@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pitstop-vehicle
-          image: nouhabk23/pitstop-vehicle:4a7845c4
+          image: nouhabk23/pitstop-vehicle:db3d75bf
           ports:
             - containerPort: 3002
           envFrom:
