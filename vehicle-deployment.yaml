@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pitstop-vehicle
-          image: $DOCKER_IMAGE:3ba2e78d
+          image: $DOCKER_IMAGE:89d7303f
           ports:
             - containerPort: 3002
           envFrom:
